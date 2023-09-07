@@ -17,8 +17,8 @@ def data_callback(laser, twist):
     dataset.append(data)
 
 if __name__ == "__main__":
-    scan_sub = message_filters.Subscriber('/rrbot/laser/scan', LaserScan, queue_size = 1)
-    cmd_sub = message_filters.Subscriber('cmd_vel', Twist, queue_size = 1)
+    scan_sub = message_filters.Subscriber('/scan', LaserScan, queue_size = 1)
+    cmd_sub = message_filters.Subscriber('/cmd_vel', Twist, queue_size = 1)
 
     rospy.init_node('data_recorder')
 
