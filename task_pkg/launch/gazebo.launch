@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+
+    <param name="robot_description" command="xacro '$(find task_pkg)/urdf/basic_rover.urdf.xacro'"/>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+    <!-- <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/> -->
+
+    <node name="spawning_rover" pkg="gazebo_ros" type="spawn_model" args="-urdf -model rover -param robot_description"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find task_pkg)/worlds/basic_world.world"/>
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+        <!-- <arg name="verbose" value="true"/> -->
+    </include>
+
+    
+
+    <node name="collision_detection_node" pkg="task_pkg" type="collision_detection.py" output="screen"/>
+
+    <node name="avoid_obstacle" pkg="task_pkg" type="obstacle_avoidance.py" output="screen"/>
+
+
+</launch>
