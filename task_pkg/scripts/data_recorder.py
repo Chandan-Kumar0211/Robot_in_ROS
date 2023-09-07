@@ -11,7 +11,8 @@ csvwriter = csv.writer(csvfile)
 dataset = []
 
 def data_callback(laser, twist):
-    laser_data = laser.ranges[:60] + laser.ranges[-60:]
+    # taking one sample from mid that is 720/2
+    laser_data = laser.ranges[360]
     twist_data = (twist.linear.x, twist.angular.z)
     data = laser_data + twist_data
     dataset.append(data)
