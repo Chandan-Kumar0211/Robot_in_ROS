@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Read Data
+# Reading our Data
 columns = []
 for i in range(120):
     columns.append(f'x_{i}')
